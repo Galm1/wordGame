@@ -43,7 +43,7 @@ app.get('/new', function(req,res,next){
     res.render('new', display)
   });
 app.post('/', function(req, res, next){
-    let guessLetter = req.body.guessLetter;
+    let guessLetter = req.body.guessedLetter;
     req.checkBody('guessLetter', "You must type something").notEmpty();
     req.checkBody('guessLetter', "It must be a letter").isAlpha();
     let errors = req.validationErrors();
@@ -52,18 +52,18 @@ app.post('/', function(req, res, next){
       console.log(errors);
       res.render('index', display);
     }else{
-     let alreadyGuessed = false;
+     let guessed = false;
       for (let i = 0; i < display.letters.length; i++) {
         if(display.letters[i] === guessLetter){
-          alreadyGuessed = true;
+          guessed = true;
         }else if(display.letters[i].toUpperCase() === guessLetter){
-          alreadyGuessed = true;
+          guessed = true;
         }else if(display.letters[i].toLowerCase() === guessLetter){
-          alreadyGuessed = true;
+          guessed = true;
         }}
       if(display.errors){
         delete display['errors'];
-      }if (!alreadyGuessed) {
+      }if (!guessed) {
         display.letters.push(guessLetter);
         let isRight = false;
         for (let i = 0; i < display.secretWord.length; i++) {
