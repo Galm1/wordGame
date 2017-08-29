@@ -5,6 +5,22 @@
     <title>The game</title>
   </head>
   <body>
+    <h1>Word Game Yo</h1>
+    <div class="">
+      {{#unknownWord}}{{.}}{{/unknownWord}}
+    </div>
+
+    <p>{{letters}} Number of misses left: {{numGuesses}}</p>
+
+    <form class="" action="/" method="post">
+      <input type="text" name="guessedLetter" value="" maxlength="1">
+      <button type="submit" name="button">submit</button>
+    </form>
+
+    {{#errors}}
+      <p>{{msg}}</p>
+    {{/errors}}
+
 
   </body>
 </html>
